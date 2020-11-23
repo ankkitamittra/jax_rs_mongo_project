@@ -1,17 +1,16 @@
 package com.practice.mongo;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
 
-
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class DBInstance {
 
 	private static DBInstance minstance;
@@ -30,7 +29,7 @@ public class DBInstance {
 		MongoClientSettings settings = MongoClientSettings.builder()
 		        .codecRegistry(pojoCodecRegistry)
 		        .build();
-		com.mongodb.client.MongoClient mongoClient = MongoClients.create(settings);
+		MongoClient mongoClient = MongoClients.create(settings);
 		//MongoClient client = MongoClien
 		//MongoClient mongoClient = new MongoClient("localhost" , 27017);
 		MongoDatabase db =  mongoClient.getDatabase("postDB");
